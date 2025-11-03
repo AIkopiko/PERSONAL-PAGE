@@ -1,0 +1,777 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+/* GLOBAL CSS VARIABLES */
+:root {
+    --clr-dark: #252525;
+    --clr-light: #f3f3f3;
+    --clr-accent: #ff00ff;
+    --clr-medium-light: #aaa;
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* BASE STYLES & RESET */
+* {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--clr-dark) url('img/tech.gif') center center no-repeat fixed;
+    background-size: cover;
+    font-family: var(--font-primary);
+    color: var(--clr-light);
+    min-height: 100vh;
+}
+
+.sectionTitle {
+    font-size: 2.5em;
+    color: var(--clr-accent);
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
+    /* Add animation for section titles */
+    opacity: 0;
+    animation: fadeInTop 0.8s ease forwards;
+}
+
+.sectionTitle::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: var(--clr-accent);
+    margin: 5px auto 0;
+}
+
+/* --- KEYFRAMES FOR ENTRANCE EFFECTS (Wavy Transition) --- */
+
+/* Keyframe for elements sliding in from the left and fading in */
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Keyframe for elements sliding in from the right and fading in */
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Keyframe for elements sliding in from the top and fading in */
+@keyframes fadeInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframe for simple fade in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* 1. WELCOME SCREEN STYLES */
+/* ------------------------------------------------------------- */
+
+#welcomeScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    font-family: var(--font-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    text-align: center;
+}
+
+
+.welcome-icons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    /* Apply animation with delay */
+    opacity: 0;
+    animation: fadeIn 0.5s ease 3.5s forwards;
+}
+
+.welcome-icons i {
+    font-size: 3em;
+    color: var(--clr-accent);
+    transition: transform 0.3s ease-in-out;
+}
+
+.welcome-icons i:hover {
+    transform: translateY(-5px);
+}
+
+/* Typing Effect Title */
+.welcome-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--clr-light);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid var(--clr-accent);
+    animation:
+        typing 3s steps(25, end) forwards,
+        blink-caret 0.75s step-end infinite;
+    width: 0;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--clr-accent); }
+}
+
+#continueLink {
+    display: inline-block;
+    /* Apply animation with delay */
+    opacity: 0;
+    animation: fadeInTop 0.5s ease 4s forwards;
+}
+
+#continueLabel, .continue-button {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 1.2em;
+    border: 2px solid var(--clr-accent);
+    color: var(--clr-light);
+    background-color: var(--clr-dark);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s ease-in-out;
+}
+
+#continueLabel:hover, .continue-button:hover {
+    box-shadow: 4px 4px 4px var(--clr-accent);
+    transform: translate(-2px, -2px);
+}
+
+/* ------------------------------------------------------------- */
+/* 2. NAVIGATION HEADER (Only used in base.html) */
+/* ------------------------------------------------------------- */
+
+.header_navbar {
+    width: 100%;
+    padding: 0 clamp(10px, 5vw, 50px); 
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(37, 37, 37, 0.95);
+    border-bottom: 2px solid var(--clr-accent);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Add a slight fade-in on load */
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.1s forwards;
+}
+
+.hn_wrap {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hn_logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--clr-light);
+}
+
+.hn_logo > h1 {
+    font-weight: 700;
+}
+
+.nav_menu > ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav_menu > ul > li {
+    border-left: 1px solid var(--clr-accent);
+    border-right: 1px solid var(--clr-accent);
+    padding: 0 8px;
+}
+
+.nav_menu a {
+    font-size: 14px;
+    color: var(--clr-light);
+    transition: 0.3s linear;
+}
+
+.hnLink {
+    padding: 3px 0;
+    transition: color 0.3s, background-color 0.3s, padding 0.3s;
+}
+
+/* Navigation Link Active State (Using :focus for temporary highlight) */
+.nav_menu a:focus,
+.nav_menu a:active {
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+    padding: 3px 10px;
+    font-weight: 600;
+}
+
+/* Link Hover State */
+.nav_menu a:hover {
+    border-bottom: 1px solid var(--clr-accent);
+    padding: 3px 10px;
+}
+
+
+/* ------------------------------------------------------------- */
+/* 3. MAIN CONTENT WRAPPERS */
+/* ------------------------------------------------------------- */
+
+#pageContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.page-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: calc(100vh - 80px);
+    position: relative;
+}
+
+.firstSection {
+     min-height: 100vh;
+     display: flex;
+     justify-content: center; 
+}
+
+/* ------------------------------------------------------------- */
+/* 4. HOME SECTION (On main.html) */
+/* ------------------------------------------------------------- */
+
+.homeWrap {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto; 
+    display: flex;
+    align-items: center;
+    padding: 0;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.homeText {
+    flex: 2;
+    min-width: 300px;
+    max-width: 650px;
+    /* Apply slide-in from left animation */
+    opacity: 0;
+    animation: fadeInLeft 0.8s ease 0.3s forwards;
+}
+
+.homeIMGCon {
+    flex-basis: 350px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    text-align: center;
+    /* Apply slide-in from right animation */
+    opacity: 0;
+    animation: fadeInRight 0.8s ease 0.3s forwards;
+}
+.homeIMGCon img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 25px var(--clr-accent);
+}
+
+.homeText h1 {
+    font-size: 3.5em;
+    color: var(--clr-accent);
+}
+
+.homeText .hometext {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--clr-light);
+    display: block;
+    margin-bottom: 15px;
+}
+.homeText p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+/* Apply animation to the 'Learn more' button */
+.continue-button {
+    opacity: 0;
+    animation: fadeInTop 0.5s ease 1s forwards;
+}
+
+
+/* ------------------------------------------------------------- */
+/* 5. ABOUT SECTION (Updated for integrated content) */
+/* ------------------------------------------------------------- */
+
+.secondSection{
+    position: relative;
+    overflow: hidden; 
+    padding-bottom: 80px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aboutWrap {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 40px; 
+    padding: 40px 0;
+    /* Apply animation to the main about wrapper */
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+}
+
+/* Bio Stats Section */
+.about-bio-stats {
+    width: 100%;
+    max-width: 700px; 
+    padding: 20px;
+    background-color: rgba(37, 37, 37, 0.7); 
+    border: 1px solid var(--clr-accent);
+    border-radius: 8px;
+    text-align: center;
+    opacity: 0;
+    /* Staggered entrance after image */
+    animation: fadeInTop 0.8s ease 1.5s forwards; 
+}
+.about-bio-stats ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* Spread the stats out */
+    flex-wrap: wrap;
+    gap: 10px 20px;
+}
+.about-bio-stats li {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.about-bio-stats strong {
+    color: var(--clr-accent);
+    font-weight: 700;
+}
+
+
+.about-info-con {
+    flex: none;
+    width: 90%;
+    max-width: 800px; 
+    min-width: 300px;
+    text-align: center;
+    /* Add animation for the text/skills block */
+    opacity: 0;
+    animation: fadeIn 1s ease 2.2s forwards;
+}
+.aboutText p {
+    margin-bottom: 15px;
+    text-align: justify; /* Keep text justified for better readability */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Image container changes for vertical stack (Photo, then Motto above it) */
+.aboutImageCon {
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column; /* Stack motto and image vertically */
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    opacity: 0;
+    /* Earlier animation for top element */
+    animation: fadeInTop 0.8s ease 0.8s forwards; 
+}
+
+/* Motto is now inside aboutImageCon, above the image */
+.aboutMotto {
+    order: 1; /* Place the motto before the image (top of its container) */
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--clr-accent);
+    font-weight: 600;
+    opacity: 1; 
+    animation: none;
+}
+
+/* Image specific styles */
+.aboutImageCon img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid var(--clr-accent);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+    opacity: 1;
+    animation: none;
+}
+
+.mySkills {
+    margin-top: 20px;
+}
+
+.mySkills h2::after {
+    margin: 5px 0 0 0;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skillsIconCon {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 15px;
+}
+/* Animate skills icons with a slight delay (Wavy effect) */
+.skillsIconCon i {
+    font-size: 2.5em;
+    color: var(--clr-accent);
+    transition: transform 0.3s;
+    opacity: 0;
+    animation: fadeInTop 0.5s ease forwards;
+}
+/* Apply individual delays to icons for a staggered 'wavy' effect */
+.skillsIconCon i:nth-child(1) { animation-delay: 2.4s; } 
+.skillsIconCon i:nth-child(2) { animation-delay: 2.6s; }
+.skillsIconCon i:nth-child(3) { animation-delay: 2.8s; }
+.skillsIconCon i:nth-child(4) { animation-delay: 3.0s; }
+
+.skillsIconCon i:hover {
+    transform: scale(1.1);
+}
+
+.myCertificate{
+    margin-top: 30px;
+}
+
+.myCertificate h2::after {
+    margin: 5px 0 0 0;
+    width: 30%;
+}
+
+/*Certificates section*/
+.certificateCon{
+    width: 100%;
+    max-width: 800px; 
+    padding: 20px;
+    background-color: rgba(37, 37, 37, 0.7); 
+    border: 1px solid var(--clr-accent);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    /* Staggered entrance after skills */
+    animation: fadeInTop 0.8s ease 3.5s forwards;
+}
+.certificateCon ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; 
+    flex-wrap: wrap;
+    gap: 10px 20px;
+}
+.certificateCon li {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* ------------------------------------------------------------- */
+/* 6. HOBBIES & PICTURE DETAIL STYLES (Used on interest.html & favorite.html) */
+/* ------------------------------------------------------------- */
+
+/* Hobbies and Picture Content */
+.myHobbies, .favPicture {
+    width: 90%;
+    max-width: 1200px;
+    padding-top: 40px; 
+    margin: 40px auto 0 auto; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: -950px;
+}
+
+/* Styles for the single-row video container */
+.media-row-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; 
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 10px; 
+}
+
+
+/* Styles for the video/description wrapper to ensure they stay together */
+.media-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    flex-shrink: 0;
+    /* Apply staggered slide-up animation */
+    opacity: 0;
+    animation: fadeInTop 0.6s ease forwards;
+}
+/* Individual delays for a staggered 'wavy' entrance */
+.media-row-container .media-item:nth-child(1) { animation-delay: 0.8s; }
+.media-row-container .media-item:nth-child(2) { animation-delay: 1.1s; }
+.media-row-container .media-item:nth-child(3) { animation-delay: 1.4s; }
+.media-row-container .media-item:nth-child(4) { animation-delay: 1.7s; }
+.media-row-container .media-item:nth-child(5) { animation-delay: 2s; }
+.media-row-container .media-item:nth-child(6) { animation-delay: 2.3s; }
+.media-row-container .media-item:nth-child(7) { animation-delay: 2.6s; }
+.media-row-container .media-item:nth-child(8) { animation-delay: 2.9s; }
+.media-row-container .media-item:nth-child(9) { animation-delay: 3.2s; }
+.media-row-container .media-item:nth-child(10) { animation-delay: 3.5s; }
+.media-row-container .media-item:nth-child(11) { animation-delay: 3.8s; }
+
+
+
+/* ... (Media wrapper and overlay styles) ... */
+.mediaWrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 350px;
+    border: 2px solid var(--clr-accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+.mediaWrapper:hover {
+    transform: scale(1.02);
+}
+
+.mediaWrapper video, .mediaWrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+}
+
+.media-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(37, 37, 37, 0.9);
+    color: var(--clr-light);
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+    z-index: 10;
+    pointer-events: none;
+}
+.mediaWrapper:hover .media-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+}
+.media-overlay h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: var(--clr-accent);
+}
+.media-overlay p {
+    font-size: 0.9em;
+    font-style: italic;
+    color: var(--clr-light);
+}
+
+/* ------------------------------------------------------------- */
+/* 7. PROJECTS SECTION */
+/* ------------------------------------------------------------- */
+
+.thirdSection { 
+    padding-top: 50px; 
+    min-height: auto; 
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.thirdSection p { 
+    margin: 20px auto 40px auto; 
+    text-align: center; 
+    width: 80%; 
+    max-width: 800px; 
+}
+.project-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+    width: 90%; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 10px; 
+}
+.project-item { 
+    background-color: rgba(37, 37, 37, 0.85); 
+    padding: 30px; 
+    border-radius: 10px; 
+    border: 2px solid var(--clr-accent); 
+    text-align: center; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.3s ease; 
+    /* Apply staggered slide-up animation */
+    opacity: 0;
+    animation: fadeInTop 0.6s ease forwards;
+}
+/* Individual delays for a staggered 'wavy' entrance */
+.project-grid .project-item:nth-child(1) { animation-delay: 0.8s; }
+.project-grid .project-item:nth-child(2) { animation-delay: 1.1s; }
+
+.project-item:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3); 
+}
+.project-item i { 
+    font-size: 3em; 
+    color: var(--clr-accent); 
+    margin-bottom: 15px; 
+}
+.project-item h3 { 
+    font-size: 1.5em; 
+    margin-bottom: 10px; 
+    color: var(--clr-light); 
+}
+
+/* ------------------------------------------------------------- */
+/* 8. CONTACT ME (PERSISTENT FOOTER) */
+/* ------------------------------------------------------------- */
+
+#contact-footer { 
+    width: 100%; 
+    background-color: rgba(37, 37, 37, 0.95); 
+    padding: 40px 20px; 
+    text-align: center; 
+    border-top: 5px solid var(--clr-accent); 
+    color: var(--clr-light); 
+    /* Add a slight fade-in on load */
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.2s forwards;
+}
+.contact-content { 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+#contact-footer .sectionTitle { 
+    color: var(--clr-accent); 
+    margin-bottom: 20px; 
+    font-size: 2em; 
+}
+.contact-links { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px 40px; 
+    margin: 30px 0; 
+}
+.contact-links a { 
+    color: var(--clr-light); 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    font-size: 1.1em; 
+    transition: color 0.3s, transform 0.3s; 
+}
+.contact-links a:hover { 
+    color: var(--clr-accent); 
+    transform: translateY(-2px); 
+}
+.contact-links i { 
+    font-size: 1.5em; 
+}
+.copyright { 
+    margin-top: 20px; 
+    font-size: 0.9em; 
+    color: var(--clr-medium-light); 
+}
