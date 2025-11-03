@@ -21,7 +21,7 @@
 }
 
 body {
-    background: var(--clr-dark) url('img/tech.gif') center center no-repeat fixed;
+    background: var(--clr-dark) url('tech.gif') center center no-repeat fixed;
     background-size: cover;
     font-family: var(--font-primary);
     color: var(--clr-light);
@@ -774,4 +774,5 @@ body {
     margin-top: 20px; 
     font-size: 0.9em; 
     color: var(--clr-medium-light); 
+
 }
